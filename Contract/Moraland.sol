@@ -7,13 +7,12 @@ import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721UR
 contract Moraland is ERC721URIStorage{
     constructor() ERC721("Moraland", "MLND") {}
 
-    event Assigned(uint256 indexed tokenId, address indexed assignee, bytes bytesId);
+    event Assigned(uint256 indexed tokenId, address indexed assignee);
 
-    function assign(string calldata tokenURI, bytes calldata bytesId) public {
-        uint256 _tokenId = abi.decode(bytesId, (uint256));
+    function assign(bytes calldata plotID) public {
+        uint256 _tokenId = abi.decode(plotID, (uint256));
         _mint(msg.sender, _tokenId);
-        _setTokenURI(_tokenId, tokenURI);
-        emit Assigned(_tokenId, msg.sender, bytesId);
+        emit Assigned(_tokenId, msg.sender);
     }
     
     function exist(bytes calldata bytesId) public view returns (bool){

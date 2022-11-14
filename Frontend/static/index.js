@@ -144,9 +144,10 @@ async function login() {
         signer = instance.connect(user);
 };
 
-async function isPlotAssigned(plotID) {
+const plotAddress = document.getElementById("plotID").value;
+async function isPlotAssigned(plotAddress) {
     try{
-        const tx = await signer.exist(plotID);
+        const tx = await signer.exist(plotAddress);
         const receipt = await tx.wait();
         console.log("isPlotAssigned, Receipt: "+receipt);
     } catch (error){
@@ -155,9 +156,9 @@ async function isPlotAssigned(plotID) {
     };
 };
 
-async function mint(plotID) {
+async function mint(plotAddress) {
     try{
-        const tx = await signer.assign(plotID);
+        const tx = await signer.assign(plotAddress);
         const receipt = await tx.wait();
         console.log("mint, Receipt:", receipt);
         document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> ${receipt} </div>`
