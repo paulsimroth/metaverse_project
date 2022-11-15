@@ -148,14 +148,13 @@ async function claimLand() {
     const plotAddress = document.getElementById("plotID").value;
     const assigned = await _isPlotAssigned(plotAddress);
     if(!assigned) {
-        await _mint(plotAddress)
+        await _mint(plotAddress);
     };
 };
 
 async function _isPlotAssigned(plotAddress) {
     try{
         const tx = await signer.exist(plotAddress);
-        console.log("isPlotAssigned, Receipt: "+tx);
         document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>Plot is already assigned!</p></div>`
         return tx;
     } catch (e){
@@ -167,8 +166,7 @@ async function _mint(plotAddress) {
     try{
         const tx = await signer.assign(plotAddress);
         const receipt = await tx.wait();
-        console.log("mint, Receipt:", receipt);
-        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> <p>You succesfully claimed this plot!, Blockhash:</p>${receipt.blockHash} </div>`
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> <p>You succesfully claimed this plot! Blockhash:</p>${receipt.blockHash} </div>`
     } catch (error){
         document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>ERROR! Minting failed, Here is the Error message:</p> ${error.message} </div>`
         console.log(error);
