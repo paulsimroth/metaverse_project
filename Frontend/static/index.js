@@ -122,10 +122,10 @@ function setPlotData() {
     document.getElementById("locationX").value = plotView.locationX;
     document.getElementById("locationY").value = plotView.locationY;
     document.getElementById("plotID").value = plotID;
-    isPlotAssignable(plotID);
+    _isPlotAssignable(plotID);
 };
 
-function isPlotAssignable(plotID) {
+function _isPlotAssignable(plotID) {
     if (unassignables.includes(plotID)) {
         document.getElementById("claimButton").setAttribute("disabled", null);
     }
@@ -144,21 +144,26 @@ async function login() {
         signer = instance.connect(user);
 };
 
-const plotAddress = document.getElementById("plotID").value;
-async function isPlotAssigned(plotAddress) {
-    console.log(plotAddress);
-    try{
-        const tx = await signer.exist(plotAddress);
-        const receipt = await tx.wait();
-        console.log("isPlotAssigned, Receipt: "+receipt);
-    } catch (error){
-        displayMessage("isPlotAssigned, ERROR: "+error);
-        console.log(error);
+async function claimLand() {
+    const plotAddress = document.getElementById("plotID").value;
+    const assigned = await _isPlotAssigned(plotAddress);
+    if(!assigned) {
+        await _mint(plotAddress)
     };
 };
 
-async function mint() {
-    const plotAddress = document.getElementById("plotID").value;
+async function _isPlotAssigned(plotAddress) {
+    try{
+        const tx = await signer.exist(plotAddress);
+        console.log("isPlotAssigned, Receipt: "+tx);
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>Plot is already assigned!</p></div>`
+        return tx;
+    } catch (e){
+        console.log(e);
+    };
+};
+
+async function _mint(plotAddress) {
     try{
         const tx = await signer.assign(plotAddress);
         const receipt = await tx.wait();
@@ -186,4 +191,3 @@ drawCanvas();
 window.addEventListener('keydown', (e) => {
     move(e.key);
 });
-
