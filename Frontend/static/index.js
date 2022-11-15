@@ -168,9 +168,9 @@ async function _mint(plotAddress) {
         const tx = await signer.assign(plotAddress);
         const receipt = await tx.wait();
         console.log("mint, Receipt:", receipt);
-        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> <p>SUCCESS! Blockhash:</p>${receipt.blockHash} </div>`
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> <p>You succesfully claimed this plot!, Blockhash:</p>${receipt.blockHash} </div>`
     } catch (error){
-        document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>ERROR:</p> ${error.message} </div>`
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>ERROR! Minting failed, Here is the Error message:</p> ${error.message} </div>`
         console.log(error);
     };
 };
