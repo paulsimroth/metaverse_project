@@ -1,6 +1,6 @@
 //Initializing constants
-const serverURL = "";
-const appID = "";
+/* const serverURL = "";
+const appID = ""; */
 
 //Constants for Map management
 const tiles = 12;//in pixels
@@ -36,7 +36,7 @@ const unassignables = [
 
 //Web3 constants
 /* const ethers = Moralis.web3Library; */
-const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+const contractAddress = "0x0C7abf7F2CcB0123d8A75c88557153841b736383";
 
 //canvas drawing functions
 function drawCanvas() {
@@ -146,6 +146,7 @@ async function login() {
 
 const plotAddress = document.getElementById("plotID").value;
 async function isPlotAssigned(plotAddress) {
+    console.log(plotAddress);
     try{
         const tx = await signer.exist(plotAddress);
         const receipt = await tx.wait();
@@ -156,14 +157,15 @@ async function isPlotAssigned(plotAddress) {
     };
 };
 
-async function mint(plotAddress) {
+async function mint() {
+    const plotAddress = document.getElementById("plotID").value;
     try{
         const tx = await signer.assign(plotAddress);
         const receipt = await tx.wait();
         console.log("mint, Receipt:", receipt);
-        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> ${receipt} </div>`
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-success"> <p>SUCCESS! Blockhash:</p>${receipt.blockHash} </div>`
     } catch (error){
-        document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> ${error} </div>`
+        document.getElementById("notifications").innerHTML = `<div class= "alert alert-danger"> <p>ERROR:</p> ${error.message} </div>`
         console.log(error);
     };
 };

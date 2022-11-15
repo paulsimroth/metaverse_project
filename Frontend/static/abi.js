@@ -75,14 +75,9 @@ const contractABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "tokenURI",
-				"type": "string"
-			},
-			{
-				"internalType": "bytes",
-				"name": "bytesId",
-				"type": "bytes"
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
 			}
 		],
 		"name": "assign",
@@ -104,12 +99,6 @@ const contractABI = [
 				"internalType": "address",
 				"name": "assignee",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "bytesId",
-				"type": "bytes"
 			}
 		],
 		"name": "Assigned",
