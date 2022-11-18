@@ -1,7 +1,3 @@
-//Initializing constants
-/* const serverURL = "";
-const appID = ""; */
-
 //Constants for Map management
 const tiles = 12;//in pixels
 const plots = tiles * 9;
@@ -35,7 +31,6 @@ const unassignables = [
 ];
 
 //Web3 constants
-/* const ethers = Moralis.web3Library; */
 const contractAddress = "0x0C7abf7F2CcB0123d8A75c88557153841b736383";
 
 //canvas drawing functions
