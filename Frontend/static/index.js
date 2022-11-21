@@ -130,7 +130,7 @@ function _isPlotAssignable(plotID) {
 };
 
 //web3 functions
-let provider, signer, instance, marketInstance, user, address;
+let provider, signer, instance, user, address;
 
 async function login() {
         provider = new ethers.providers.Web3Provider(window.ethereum);
