@@ -10,7 +10,7 @@ I also slightly changed the smart contract.
 ## Technology Stack & Tools
 
 - Solidity (Writing Smart Contract)
-- Javascript (React & Testing)
+- Javascript (Frontend & Testing)
 - [Ethers](https://docs.ethers.io/v5/) (Blockchain Interaction)
 - [Truffle](https://trufflesuite.com/docs/truffle/) (Development Framework)
 
