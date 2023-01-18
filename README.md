@@ -10,7 +10,7 @@ I also slightly changed the smart contract.
 ## Technology Stack & Tools
 
 - Solidity (Writing Smart Contract)
-- Javascript (Frontend & Testing)
+- Javascript (Frontend)
 - [Ethers](https://docs.ethers.io/v5/) (Blockchain Interaction)
 
 ## Disclaimer
